@@ -1,3 +1,6 @@
+-- telescope.nvim
+-- https://github.com/nvim-telescope/telescope.nvim
+
 -- NOTE: Plugins can specify dependencies.
 --
 -- The dependencies are proper plugin specifications as well - anything
@@ -110,4 +113,5 @@ return {
     end,
   },
 }
+
 -- vim: ts=2 sts=2 sw=2 et

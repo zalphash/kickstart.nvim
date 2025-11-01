@@ -1,3 +1,6 @@
+-- which-key.nvim
+-- https://github.com/folke/which-key.nvim
+
 -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
 --
 -- This is often very useful to both group configuration, as well as handle
@@ -15,7 +18,8 @@
 return {
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    -- event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    event = 'VeryLazy', -- Sets the loading event to 'VeryLazy'
     opts = {
       -- delay between pressing a key and opening which-key (milliseconds)
       -- this setting is independent of vim.o.timeoutlen
@@ -61,9 +65,10 @@ return {
       spec = {
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>g', group = '[G]it Hunk', mode = { 'n', 'v' } },
       },
     },
   },
 }
+
 -- vim: ts=2 sts=2 sw=2 et

@@ -1,3 +1,6 @@
+-- conform.nvim
+-- https://github.com/stevearc/conform.nvim
+
 return {
   { -- Autoformat
     'stevearc/conform.nvim',
@@ -31,6 +34,7 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        markdown = { 'autocorrect' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -40,4 +44,5 @@ return {
     },
   },
 }
+
 -- vim: ts=2 sts=2 sw=2 et
