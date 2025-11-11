@@ -9,10 +9,39 @@ return {
     require('lualine').setup {
       options = {
         theme = 'tokyonight-night',
+        refresh = {
+          statusline = 100,
+          tabline = 100,
+          winbar = 100,
+          refresh_time = 16,
+          events = {
+            'WinEnter',
+            'BufEnter',
+            'BufWritePost',
+            'SessionLoadPost',
+            'FileChangedShellPost',
+            'VimResized',
+            'Filetype',
+            'CursorMoved',
+            'CursorMovedI',
+            'ModeChanged',
+          },
+        },
       },
       sections = {
         lualine_a = { 'mode' },
-        lualine_b = { 'branch', 'diff', 'diagnostics' },
+        lualine_b = {
+          'branch',
+          'diff',
+          'diagnostics',
+          {
+            ---@diagnostic disable-next-line: undefined-field
+            require('noice').api.status.mode.get,
+            ---@diagnostic disable-next-line: undefined-field
+            cond = require('noice').api.status.mode.has,
+            color = { fg = '#ff9e64' },
+          },
+        },
         lualine_c = { 'filename', 'lsp_progress' },
         lualine_x = {
           {
