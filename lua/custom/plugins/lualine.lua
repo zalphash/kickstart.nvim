@@ -10,10 +10,10 @@ return {
       options = {
         theme = 'tokyonight-night',
         refresh = {
-          statusline = 100,
-          tabline = 100,
-          winbar = 100,
-          refresh_time = 16,
+          statusline = 127,
+          tabline = 127,
+          winbar = 127,
+          refresh_time = 15,
           events = {
             'WinEnter',
             'BufEnter',
@@ -25,6 +25,8 @@ return {
             'CursorMoved',
             'CursorMovedI',
             'ModeChanged',
+            'RecordingEnter',
+            'RecordingLeave',
           },
         },
       },
@@ -44,6 +46,13 @@ return {
         },
         lualine_c = { 'filename', 'lsp_progress' },
         lualine_x = {
+          {
+            ---@diagnostic disable-next-line: undefined-field
+            require('noice').api.status.command.get,
+            ---@diagnostic disable-next-line: undefined-field
+            cond = require('noice').api.status.command.has,
+            color = { fg = '#ff9e64' },
+          },
           {
             require('lazy.status').updates,
             cond = require('lazy.status').has_updates,

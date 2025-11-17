@@ -3,7 +3,9 @@
 
 -- Get OS name
 local function get_os_name()
+  ---@diagnostic disable-next-line: undefined-field
   if vim.loop and vim.loop.os_uname then
+    ---@diagnostic disable-next-line: undefined-field
     local os_info = vim.loop.os_uname()
     return os_info.sysname:lower()
   end

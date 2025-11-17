@@ -37,6 +37,13 @@ vim.keymap.set('v', '<leader>y', [["+y]], {
   desc = 'Yank into Clipboard',
 })
 
+-- Quickly select the last pasted text
+vim.keymap.set('n', '<leader>gv', '`[v`]', {
+  noremap = true,
+  silent = true,
+  desc = 'Select last pasted text',
+})
+
 -- Remain selected after indenting
 vim.keymap.set('v', '<', '<gv', {
   noremap = true,
@@ -54,6 +61,40 @@ vim.keymap.set({ 'i', 'c', 't' }, 'jk', '<Esc>', {
   noremap = true,
   silent = true,
   desc = 'Quickly return to normal mode',
+})
+
+-- Smart j/k: use screen lines by default, physical lines with count prefix
+vim.keymap.set({ 'n', 'x' }, 'j', [[v:count == 0 ? 'gj' : 'j']], {
+  expr = true,
+  silent = true,
+  desc = 'Smart line movements based on count prefix',
+})
+vim.keymap.set({ 'n', 'x' }, 'k', [[v:count == 0 ? 'gk' : 'k']], {
+  expr = true,
+  silent = true,
+  desc = 'Smart line movements based on count prefix',
+})
+
+-- Surround the selected word or block by ' or "
+vim.keymap.set('v', "<leader>'", "<esc>`<i'<Esc>`>la'<Esc>", {
+  noremap = true,
+  silent = true,
+  desc = "Surround the selected word or block by '",
+})
+vim.keymap.set('v', '<leader>"', '<Esc>`<i"<Esc>`>la"<Esc>', {
+  noremap = true,
+  silent = true,
+  desc = 'Surround the selected word or block by "',
+})
+vim.keymap.set('n', "<leader>'", "viw<Esc>bi'<Esc>ea'<esc>", {
+  noremap = true,
+  silent = true,
+  desc = "Surround the selected word or block by '",
+})
+vim.keymap.set('n', '<leader>"', 'viw<Esc>bi"<Esc>ea"<esc>', {
+  noremap = true,
+  silent = true,
+  desc = 'Surround the selected word or block by "',
 })
 
 -- Substitute within selection only
@@ -87,26 +128,11 @@ vim.keymap.set('n', '<leader>cw', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/g<Left><Left>
   desc = 'Change the current word globally',
 })
 
--- Surround the selected word or block by ' or "
-vim.keymap.set('v', "<leader>'", "<esc>`<i'<Esc>`>la'<Esc>", {
+-- Edit current register content, usage: "q<leader>em to edit register q
+vim.keymap.set('n', '<leader>em', ':<C-u><C-r><C-r>="let @". v:register ." = ". string(getreg(v:register))<CR><Left>', {
   noremap = true,
   silent = false,
-  desc = "Surround the selected word or block by '",
-})
-vim.keymap.set('v', '<leader>"', '<Esc>`<i"<Esc>`>la"<Esc>', {
-  noremap = true,
-  silent = false,
-  desc = 'Surround the selected word or block by "',
-})
-vim.keymap.set('n', "<leader>'", "viw<Esc>bi'<Esc>ea'<esc>", {
-  noremap = true,
-  silent = false,
-  desc = "Surround the selected word or block by '",
-})
-vim.keymap.set('n', '<leader>"', 'viw<Esc>bi"<Esc>ea"<esc>', {
-  noremap = true,
-  silent = false,
-  desc = 'Surround the selected word or block by "',
+  desc = 'Edit current register content',
 })
 
 -- vim: ts=2 sts=2 sw=2 et
